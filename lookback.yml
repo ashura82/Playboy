@@ -1,0 +1,16 @@
+-
+  hosts: evagroup
+  gather_facts: false
+  connection: local
+  tasks:
+    - ios_command:
+        commands: | 
+          conf t 
+          int lo0
+          ip add 1.1.1.1 255.255.255.0
+        provider:
+          username: admin
+          password: ingesup
+          authorize: yes
+      register: output
+    - debug: var=output.stdout_lines
